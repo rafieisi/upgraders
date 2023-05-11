@@ -1,4 +1,4 @@
-import { gql, useQuery } from "@apollo/client";
+import { gql, useLazyQuery } from "@apollo/client";
 import React, { createContext, useContext, useState } from "react";
 
 const EligibilityContext = createContext();
@@ -12,36 +12,30 @@ const GET_OFFER_URL = gql`
 `;
 
 const useEligibility = () => {
-  const [pid, setPid] = useState("5stlBZRGQF");
-  const [lastName, setLastName] = useState();
-  const [pnr, setPnr] = useState();
-  const [shouldExecuteSearch, setShouldExecuteSearch] = useState(false);
-  const [offerUrl, setOfferUrl] = useState("");
+  const [pid, setPid] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [pnr, setPnr] = useState("");
 
-  const { error, loading } = useQuery(GET_OFFER_URL, {
-    variables: {
+  const [getOfferUrl, queryState] = useLazyQuery(GET_OFFER_URL);
+
+  const { data, loading, error } = queryState;
+
+  const checkEligibility = () => {
+    getOfferUrl({variables: {
       pid: pid,
       pnr: pnr,
       lastname: lastName,
-    },
-    onCompleted: (data) => {
-      setOfferUrl(data.getOfferUrl.offerUrl);
-      setShouldExecuteSearch(false);
-    },
-    skip: !shouldExecuteSearch,
-  });
-
-  const checkEligibility = () => {
-    setShouldExecuteSearch(true);
+    }})
   };
 
   return {
-    state: { pid, lastName, pnr, loading, error, offerUrl },
+    state: { pid, lastName, pnr, loading, error, offerUrl: data?.getOfferUrl?.offerUrl },
+    debug: queryState,
     actions: {
       setPid,
       setLastName,
       setPnr,
-      checkEligibility
+      checkEligibility,
     },
   };
 };
