@@ -1,0 +1,26 @@
+GET https://ws-request-router.stg.internal.plusgrade.com/offer/jPXCxlnkBR/pnr
+
+### 
+curl --location 'http://localhost:8080/graphql' \
+--header 'Content-Type: application/json' \
+--data '{"query":"query getOfferUrl($pid: String!, $pnr: String!, $lastname: String!) {\n  getOfferUrl(\n    pid: $pid\n    pnr: $pnr\n    lastname: $lastname\n  ) {\n    offerUrl\n  }\n}","variables":{"pid":"5stlBZRGQF","pnr":"52NLXQ","lastname":"PLUSGRADELAST"}}'
+
+###
+curl 'http://127.0.0.1:8080/graphql' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'Accept-Language: en-US,en;q=0.9' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Connection: keep-alive' \
+  -H 'Content-Type: application/json' \
+  -H 'Origin: http://localhost:3000' \
+  -H 'Pragma: no-cache' \
+  -H 'Referer: http://localhost:3000/' \
+  -H 'Sec-Fetch-Dest: empty' \
+  -H 'Sec-Fetch-Mode: cors' \
+  -H 'Sec-Fetch-Site: cross-site' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36' \
+  -H 'sec-ch-ua: "Chromium";v="112", "Google Chrome";v="112", "Not:A-Brand";v="99"' \
+  -H 'sec-ch-ua-mobile: ?0' \
+  -H 'sec-ch-ua-platform: "Linux"' \
+  --data '{"query":"query getOfferUrl($pid: String\u0021, $pnr: String\u0021, $lastname: String\u0021) {getOfferUrl(  pid: $pid  pnr: $pnr  lastname: $lastname) {  offerUrl}}","variables":{"pid":"5stlBZRGQF","pnr":"52NLXQ","lastname":"PLUSGRADELAST"}"}' \
+  --compressed
