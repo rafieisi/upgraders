@@ -5,6 +5,7 @@ export const Upgrader = () => {
   return (
     <div className="bg-white rounded-md mt-4 text-sm w-[550px] flex flex-row drop-shadow-xl">
         <TabSet>
+            
             <TabSheet label="Airline">
                 <p className="text-sm my-1 ml-1 mb-3 font-bold">Check for upgrade eligiblity here</p>
                 <div>
