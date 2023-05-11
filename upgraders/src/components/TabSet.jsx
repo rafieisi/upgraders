@@ -13,14 +13,14 @@ function TabSet({ children }) {
   }
 
   return (
-    <div className="mb-2 flex flex-col">
-      <ul className="mb-2">
+    <div className="mb-2 flex flex-col w-full">
+      <ul className="bg-orange-600 w-full  rounded-t-md">
         {React.Children.toArray(children).map(({ props }) => (
           <li
             key={props.label}
             className={classnames(
-              "py-2 text-center min-w-[6rem] mr-2 border-b-4 inline-block",
-              { "border-orange-500": activeTab === props.label }
+              "py-2 text-center min-w-[6rem] mr-2 text-white inline-block",
+              { "bg-white text-orange-700 pt-1 rounded-t-lg": activeTab === props.label }
             )}
           >
             <a

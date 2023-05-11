@@ -2,12 +2,12 @@ import React from "react";
 
 export const PartnersSection = () => {
   return (
-    <div class="pb-16 max-w-screen-xl ml-auto mr-auto">
-        <h1 class="mb-[30px] ml-auto mr-auto leading-[60px] max-w-screen-lg text-[56px] text-blue-600 font-[600] text-center">
+    <div class="pb-16 max-w-screen-lg ml-auto mr-auto">
+        <h1 class="mb-[30px] ml-auto mr-auto leading-[40px] max-w-screen-lg text-[35px] text-blue-600 font-[600] text-center max-w-lg">
           See the innovators in ancillary revenue
         </h1>
-        <p class="max-w-screen-lg font-[600] mr-auto ml-auto text-center text-slate-950">we are powering amazing customer experiences for incredible companies worldwide.</p>
-        <div  class="grid grid-cols-4 gap-4 my-5 items-center">
+        <p class="max-w-screen-lg text-sm font-[400] mr-auto ml-auto text-center text-slate-950">we are powering amazing customer experiences for incredible companies worldwide.</p>
+        <div  class="max-w-4xl grid grid-cols-4 gap-16 my-5 items-center ml-auto mr-auto">
           <img src="https://st-newplusgrade.points.com/static/1d503795263bcc7777021581cbdc4925/161f2/home_lufthansa.webp" />
           <img src="https://st-newplusgrade.points.com/static/8345f55d85a22793f2c97bcda6db9676/161f2/EtihadGold.webp"/>
           <img src="https://st-newplusgrade.points.com/static/6a0cbf14613569f37e89abafc8a6c402/161f2/Home_MarriottBlack.webp"/>
@@ -23,8 +23,8 @@ export const PartnersSection = () => {
           <img src="https://st-newplusgrade.points.com/static/bdb08c04801bd4cb8207a06281e3ce32/161f2/Qantas.webp"/>
           <img src="https://st-newplusgrade.points.com/static/8fbdf63a58edb512cfe32ed14f223fea/161f2/Home_CitiBank.webp"/>
         </div>
-        <div class="flex flex-col items-center">
-          <button class="text-white px-8 py-3 bg-blue-600 rounded-full font-semibold">See all partners</button>
+        <div class="flex flex-col items-center mt-5">
+          <button class="text-white px-6 py-2 text-xs bg-blue-600 rounded-full font-[400]">See all partners</button>
         </div>
         
     </div>
