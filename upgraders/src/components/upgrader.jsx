@@ -47,16 +47,18 @@ const TabContent = ({ partners }) => {
           Check Now
         </button>
       </div>
-      {state.loading && (<h3 className="block font-bold text-lg">Loading ...</h3>)}
-      {state.error && (<h3 className="block font-bold text-lg">Sorry, you are not eligibile to upgrade ...</h3>)}
-      {state.offerUrl && (
+      {
+      state.loading ? (<h3 className="block font-bold text-lg">Loading ...</h3>) :
+      state.offerUrl ? (
           <>
             <h3 className="block font-bold text-lg">You are eligible!!</h3>
             <a className="font-bold" href={state.offerUrl}>
               Click here to upgrade
             </a>
           </>
-        )}
+        ) :
+       state.error && (<h3 className="block font-bold text-lg">Sorry, you are not eligibile to upgrade ...</h3>)
+        }
     </>
   )
 };

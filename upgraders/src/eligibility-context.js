@@ -21,11 +21,13 @@ const useEligibility = () => {
   const { data, loading, error } = queryState;
 
   const checkEligibility = () => {
-    getOfferUrl({variables: {
-      pid: pid,
-      pnr: pnr,
-      lastname: lastName,
-    }})
+    if (!loading) {
+      getOfferUrl({variables: {
+        pid: pid,
+        pnr: pnr,
+        lastname: lastName,
+      }});
+    }
   };
 
   return {
