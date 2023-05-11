@@ -64,9 +64,11 @@ const TabContent = ({ partners }) => {
 };
 
 export const Upgrader = () => {
+  const { actions } = useEligibilityContext();
+
   return (
     <div className="bg-white rounded-md mt-4 text-sm w-[550px] flex flex-row drop-shadow-xl">
-      <TabSet>
+      <TabSet onChange={actions.reset}>
         {["Airline", "Cruise", "Rail"].map((label) => (
           <TabSheet key={label} label={label}>
             <TabContent partners={partnerInfo[label]}/>
