@@ -1,5 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
-import React, { createContext, useContext, useState } from "react";
+import { gql, useLazyQuery } from "@apollo/client";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const EligibilityContext = createContext();
 
@@ -12,36 +12,49 @@ const GET_OFFER_URL = gql`
 `;
 
 const useEligibility = () => {
-  const [pid, setPid] = useState("5stlBZRGQF");
-  const [lastName, setLastName] = useState();
-  const [pnr, setPnr] = useState();
-  const [shouldExecuteSearch, setShouldExecuteSearch] = useState(false);
+  const [pid, setPid] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [pnr, setPnr] = useState("");
   const [offerUrl, setOfferUrl] = useState("");
+  const [error, setError] = useState("");
 
-  const { error, loading } = useQuery(GET_OFFER_URL, {
-    variables: {
-      pid: pid,
-      pnr: pnr,
-      lastname: lastName,
+  const [getOfferUrl, queryState] = useLazyQuery(GET_OFFER_URL, {
+    onCompleted: ({ getOfferUrl }) => {
+      setOfferUrl(getOfferUrl.offerUrl);
     },
-    onCompleted: (data) => {
-      setOfferUrl(data.getOfferUrl.offerUrl);
-      setShouldExecuteSearch(false);
-    },
-    skip: !shouldExecuteSearch,
+    onError: (error) => {
+      setError(error);
+    }
   });
 
+  const { loading } = queryState;
+
   const checkEligibility = () => {
-    setShouldExecuteSearch(true);
+    if (!loading) {
+      setOfferUrl("");
+      getOfferUrl({variables: {
+        pid: pid,
+        pnr: pnr,
+        lastname: lastName,
+      }});
+    }
   };
 
   return {
-    state: { pid, lastName, pnr, loading, error, offerUrl },
+    state: { pid, lastName, pnr, loading, error, offerUrl  },
+    debug: queryState,
     actions: {
       setPid,
       setLastName,
       setPnr,
-      checkEligibility
+      checkEligibility,
+      reset: () => {
+        setPid("");
+        setLastName("");
+        setPnr("");
+        setOfferUrl("");
+        setError("");
+      }
     },
   };
 };

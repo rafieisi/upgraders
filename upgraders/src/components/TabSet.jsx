@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 
-function TabSet({ children }) {
+function TabSet({ children, onChange }) {
   const [activeTab, setActiveTab] = useState(getFirstTab());
 
   useEffect(() => {
@@ -28,6 +28,7 @@ function TabSet({ children }) {
               onClick={(e) => {
                 e.preventDefault();
                 setActiveTab(props.label);
+                onChange(props.label);
               }}
               class={activeTab===props.label?"text-gray-950":"text-white"}
             >
