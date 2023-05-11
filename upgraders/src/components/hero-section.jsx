@@ -6,13 +6,14 @@ export const HeroSection = () => {
     <div
       className="min-h-[600px] 
         overflow-hidden bg-cover bg-no-repeat bg-top 
-        bg-[url('https://st-newplusgrade.points.com/static/d62ce4caf4dcd40d8f50baa2429c8400/b870f/Plusgrade-Hero-Banner-Homepage.webp')]
+        bg-[url('../assets/img/main.webp')]
         "
     >
       <div class="container max-w-screen-lg grid grid-cols-2 flex justify-center ml-auto mr-auto mt-32">
         <div className="flex flex-row items-center z-30">
           <div className="container max-w-screen-xl mx-auto flex flex-col">
-            <h1 className="text-white text-5xl mb-5">Let us help you to upgrade to highest</h1>
+            <h1 className="text-white text-5xl mb-5">
+              Take off in <span class="text-orange-600">first-class</span> fashion with our <span class="text-blue-600">upgrade</span> options</h1>
             <Upgrader />
           </div>
         </div>
