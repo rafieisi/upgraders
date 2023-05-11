@@ -29,13 +29,14 @@ function TabSet({ children }) {
                 e.preventDefault();
                 setActiveTab(props.label);
               }}
+              class={activeTab===props.label?"text-gray-950":"text-white"}
             >
               {props.label}
             </a>
           </li>
         ))}
       </ul>
-      <div className="p-2 w-full">
+      <div className="p-2 px-7 w-full">
         {
           React.Children.toArray(children).find(
             ({ props }) => activeTab === props.label
