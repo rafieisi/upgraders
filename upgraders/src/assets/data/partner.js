@@ -1,5 +1,5 @@
 const partnerInfo = {
-  Airline: [
+  Flight: [
     {
       partnerName: "Aegean Airlines S.A.",
       pid: "Rwh3u0C8A3"
