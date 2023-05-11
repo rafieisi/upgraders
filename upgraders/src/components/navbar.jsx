@@ -1,4 +1,4 @@
-import pglogo from "../../assets/img/pg-logo.png";
+import pglogo from "../assets/img/pg-logo.png";
 
 export function Navbar() {
   return (
