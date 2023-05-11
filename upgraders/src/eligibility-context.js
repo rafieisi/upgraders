@@ -15,6 +15,7 @@ const useEligibility = () => {
   const [pid, setPid] = useState("5stlBZRGQF");
   const [lastName, setLastName] = useState();
   const [pnr, setPnr] = useState();
+  const [shouldExecuteSearch, setShouldExecuteSearch] = useState(false);
   const [offerUrl, setOfferUrl] = useState("");
 
   const { error, loading } = useQuery(GET_OFFER_URL, {
@@ -25,9 +26,14 @@ const useEligibility = () => {
     },
     onCompleted: (data) => {
       setOfferUrl(data.getOfferUrl.offerUrl);
+      setShouldExecuteSearch(false);
     },
-    skip: !pid || !pnr || !lastName,
+    skip: !shouldExecuteSearch,
   });
+
+  const checkEligibility = () => {
+    setShouldExecuteSearch(true);
+  };
 
   return {
     state: { pid, lastName, pnr, loading, error, offerUrl },
@@ -35,6 +41,7 @@ const useEligibility = () => {
       setPid,
       setLastName,
       setPnr,
+      checkEligibility
     },
   };
 };

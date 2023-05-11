@@ -24,3 +24,9 @@ curl 'http://127.0.0.1:8080/graphql' \
   -H 'sec-ch-ua-platform: "Linux"' \
   --data '{"query":"query getOfferUrl($pid: String\u0021, $pnr: String\u0021, $lastname: String\u0021) {getOfferUrl(  pid: $pid  pnr: $pnr  lastname: $lastname) {  offerUrl}}","variables":{"pid":"5stlBZRGQF","pnr":"52NLXQ","lastname":"PLUSGRADELAST"}"}' \
   --compressed
+
+###
+
+PID: 5stlBZRGQF
+PNR: 52NLXQ
+LASTNAME: PLUSGRADELAST
