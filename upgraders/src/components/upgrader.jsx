@@ -3,10 +3,11 @@ import { TabSet, TabSheet } from "./TabSet";
 import { useEligibilityContext } from "../eligibility-context";
 
 import partnerInfo from "../assets/data/partner";
+import DualBall from "../assets/DualBall.svg";
 
-const partner_css = "border rounded-l-full p-1 pl-2 px-2 border-gray-400 w-4/12"
-const booking_css = "border-b border-t p-1 pl-2 px-2 border-gray-400 w-4/12"
-const lastname_css = "border rounded-r-full p-1 pl-2 px-2 border-gray-400 w-4/12"
+const partner_css = "rounded-l-full p-[5.7px] pl-2 px-2 w-4/12"
+const booking_css = "border-l border-r p-1 pl-2 px-2 border-gray-400 w-4/12"
+const lastname_css = "rounded-r-full p-1 pl-2 px-2 w-4/12"
 const button_css = "text-white px-8 py-2 text-xs bg-blue-600 rounded-full mt-4"
 const paragraph_css = "text-md my-1 ml-1 mb-3 font-[900] text-orange-600"
 const button_container_css="flex flex-row justify-between content-center items-center align-middle"
@@ -18,16 +19,25 @@ const error_icon = <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="
 const TabContent = ({ label, partners }) => {
   const { state, actions } = useEligibilityContext();
 
+  //in case pid was initially empty
+  if(state.pid.length === 0){
+    actions.setPid(partners[0].pid)
+  }
   return (
-    <>
+    <div class="relative">
+      {state.loading && (
+          <div class="z-10 absolute top-0 left-0 bg-white h-25 w-[500px]">
+            <img src={DualBall} class="w-30 h-[120px] ml-auto mr-auto"/>
+          </div>
+      )}
       <p className={paragraph_css}>
         Check for {label} upgrades:
       </p>
-      <div>
+      <div class="border border-gray-400 rounded-full">
         <select
           class={partner_css}
           placeholder="Partner Name"
-          onChange={(e) => actions.setPid(e.target.value)}
+          onChange={(e) => {actions.reset();actions.setPid(e.target.value)}}
         >
           {
             partners.map(({ pid, partnerName }) => (
@@ -51,7 +61,7 @@ const TabContent = ({ label, partners }) => {
         />
       </div>
       <div class={button_container_css}>
-        {!state.loading && state.error ? (
+        {!state.loading && state.offerUrl.length === 0 && state.error ? (
           <p class={error_css}>
             <span>{error_icon}</span>&nbsp; Sorry, upgrade not applicable to your booking
           </p>
@@ -63,18 +73,7 @@ const TabContent = ({ label, partners }) => {
           Check Now
         </button>
       </div>
-      {
-      state.loading ? (<h3 className="block font-bold text-lg">Loading ...</h3>) :
-      state.offerUrl && (
-          <>
-            <h3 className="block font-bold text-lg">You are eligible!!</h3>
-            <a className="font-bold" href={state.offerUrl}>
-              Click here to upgrade
-            </a>
-          </>
-        )
-      }
-    </>
+    </div>
   )
 };
 

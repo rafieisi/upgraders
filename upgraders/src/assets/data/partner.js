@@ -487,10 +487,6 @@ const partnerInfo = {
   ],
   Cruise: [
     {
-      partnerName: "Ancill Hotels",
-      pid: "3rMjSFLANH"
-    },
-    {
       partnerName: "Azamara Club Cruises",
       pid: "qyOjwxdAZA"
     },

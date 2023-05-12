@@ -2,7 +2,7 @@ import pglogo from "../assets/img/pg-logo.png";
 
 export function Navbar() {
   return (
-    <nav className="fixed text-white font-bold py-2 bg-gray-950 top-0 left-0 w-full z-10">
+    <nav className="fixed text-white font-bold py-2 bg-gray-950 top-0 left-0 w-full z-50">
       <div className="container max-w-screen-lg mx-auto flex flex-row justify-between content-center items-center align-middle">
         <img src={pglogo} alt="Plusgrade" class='w-24 h-5' />
         <ul class="flex flex-row">

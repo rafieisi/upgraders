@@ -36,7 +36,13 @@ const useEligibility = () => {
         pid: pid,
         pnr: pnr,
         lastname: lastName,
-      }});
+      }}).then((res)=>
+        {
+          if(!res.loading && !res.error && res.data){
+            window.open(res.data.getOfferUrl.offerUrl, "_blank", "noreferrer")
+          }
+        }
+      )
     }
   };
 
